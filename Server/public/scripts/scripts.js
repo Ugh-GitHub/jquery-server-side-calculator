@@ -5,6 +5,9 @@ $(document).ready(onReady);
 let firstNum= "";
 let secondNum= "";
 let operator="";
+let freshCalc=true;
+
+console.log("98." * 5);
 
 function onReady() {
     $("#1").on('click',concat1);
@@ -23,94 +26,131 @@ function onReady() {
     $("#subtraction").on('click',subFunc);
     $("#addition").on('click',addFunc);
     $("#submit").on('click',enterFunc);
+    $("#clear").on('click',enterFunc);
 }
 
 function concat1() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 1;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 1;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "1";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat2() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 2;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 2;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "2";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat3() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 3;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 3;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "3";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat4() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 4;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 4;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "4";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat5() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 5;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 5;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "5";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat6() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 6;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 6;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "6";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat7() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 7;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 7;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "7";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat8() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 8;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 8;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "8";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function concat9() {
-    if (operator == "") {
+    if (operator == "" && freshCalc) {
         firstNum += 9;
     }
-    else {
+    else if (operator.length>0) {
         secondNum += 9;
+    }
+    else if (operator == "" && !freshCalc) {
+        freshCalc = true;
+        firstNum = "9";
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
@@ -136,49 +176,122 @@ function deciFunc() {
 }
 
 function multiFunc() {
-    if (firstNum.length > 0 && secondNum.length == 0 && operator == "") {
+    if ($("#addition").hasClass("selectedOperator") || $("#division").hasClass("selectedOperator") || $("#subtraction").hasClass("selectedOperator")) {
+        $("#subtraction").removeClass("selectedOperator");
+        $("#addition").removeClass("selectedOperator");
+        $("#division").removeClass("selectedOperator");
+        
+    }
+
+    if (firstNum.length > 0 && secondNum.length == 0) {
         operator = "*";
+        $("#multiplication").addClass("selectedOperator");
     }
     if (firstNum.length > 0 && secondNum.length > 0) {
         enterFunc();
         operator = "*";
+        $("#multiplication").addClass("selectedOperator");
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function divFunc() {
-    if (firstNum.length > 0 && secondNum.length == 0 && operator == "") {
+    if ($("#multiplication").hasClass("selectedOperator") || $("#addition").hasClass("selectedOperator") || $("#subtraction").hasClass("selectedOperator")) {
+        $("#multiplication").removeClass("selectedOperator");
+        $("#addition").removeClass("selectedOperator");
+        $("#subtraction").removeClass("selectedOperator");
+    }
+
+    if (firstNum.length > 0 && secondNum.length == 0) {
         operator = "/";
+        $("#division").addClass("selectedOperator");
     }
     if (firstNum.length > 0 && secondNum.length > 0) {
         enterFunc();
         operator = "/";
+        $("#division").addClass("selectedOperator");
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function addFunc() {
-    if (firstNum.length > 0 && secondNum.length == 0 && operator == "") {
+    if ($("#multiplication").hasClass("selectedOperator") || $("#division").hasClass("selectedOperator") || $("#subtraction").hasClass("selectedOperator")) {
+        $("#multiplication").removeClass("selectedOperator");
+        
+        $("#division").removeClass("selectedOperator");
+        $("#subtraction").removeClass("selectedOperator");
+    }
+
+    if (firstNum.length > 0 && secondNum.length == 0) {
         operator = "+";
+        $("#addition").addClass("selectedOperator");
     }
     if (firstNum.length > 0 && secondNum.length > 0) {
         enterFunc();
         operator = "+";
+        $("#addition").addClass("selectedOperator");
     }
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
 function subFunc() {
-    if (firstNum.length > 0 && secondNum.length == 0 && operator == "") {
+    if ($("#multiplication").hasClass("selectedOperator") || $("#addition").hasClass("selectedOperator") || $("#division").hasClass("selectedOperator")) {
+        $("#multiplication").removeClass("selectedOperator");
+        $("#addition").removeClass("selectedOperator");
+        $("#division").removeClass("selectedOperator");
+        
+    }
+
+    if (firstNum.length > 0 && secondNum.length == 0) {
         operator = "-";
+        $("#subtraction").addClass("selectedOperator");
     }
     if (firstNum.length > 0 && secondNum.length > 0) {
         enterFunc();
         operator = "-";
+        $("#subtraction").addClass("selectedOperator");
     }
+    
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
-function enterFunc() {
 
+
+function clear() {
+    freshCalc=true;
+    firstNum = secondNum  = operator = "";
+}
+
+// MOST OF THIS WILL GO TO THE SERVER
+function enterFunc() {
+    
+    freshCalc=false;
+    firstCalc = Number(firstNum);
+    secondCalc = Number(secondNum);
+    $("#multiplication").removeClass("selectedOperator");
+    $("#addition").removeClass("selectedOperator");
+    $("#division").removeClass("selectedOperator");
+    $("#subtraction").removeClass("selectedOperator");
+
+    console.log(firstCalc,secondCalc,operator,firstNum,secondNum);
+
+    if (operator == "*") {
+        answer = firstCalc*secondCalc;
+    }
+    if (operator == "/") {
+        answer = firstCalc/secondCalc;
+    }
+    if (operator == "-") {
+        answer = firstCalc-secondCalc;
+    }
+    if (operator == "+") {
+        answer = firstCalc+secondCalc;
+    }
+    console.log(answer);
+    firstNum = answer.toString();
+    secondNum  = operator = "";
+    console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
+    //AJAX send
+    //then set firstNum to answer
+    // set secondNum & operator to ""
 }
