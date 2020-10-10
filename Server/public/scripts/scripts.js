@@ -10,6 +10,7 @@ let freshCalc=true;
 console.log("98." * 5);
 
 function onReady() {
+    updateDisplay();
     $("#1").on('click',concat1);
     $("#2").on('click',concat2);
     $("#3").on('click',concat3);
@@ -40,6 +41,7 @@ function concat1() {
         freshCalc = true;
         firstNum = "1";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -54,6 +56,7 @@ function concat2() {
         freshCalc = true;
         firstNum = "2";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -68,6 +71,7 @@ function concat3() {
         freshCalc = true;
         firstNum = "3";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -82,6 +86,7 @@ function concat4() {
         freshCalc = true;
         firstNum = "4";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -96,6 +101,7 @@ function concat5() {
         freshCalc = true;
         firstNum = "5";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -110,6 +116,7 @@ function concat6() {
         freshCalc = true;
         firstNum = "6";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -124,6 +131,7 @@ function concat7() {
         freshCalc = true;
         firstNum = "7";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -138,6 +146,7 @@ function concat8() {
         freshCalc = true;
         firstNum = "8";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -152,6 +161,7 @@ function concat9() {
         freshCalc = true;
         firstNum = "9";
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -162,6 +172,7 @@ function concat0() {
     else if (operator.length > 0 && firstNum.length != 0) {
         secondNum += 0;
     }
+    updateDisplay();
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
@@ -255,11 +266,22 @@ function subFunc() {
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
 }
 
-
-
 function clear() {
     freshCalc=true;
     firstNum = secondNum  = operator = "";
+}
+
+function updateDisplay() {
+
+    if (secondNum.length == 0 && firstNum.length == 0) {
+        $("#display").text("0");
+        }
+    if (secondNum.length == 0 && firstNum.length > 0) {
+        $("#display").text(firstNum);
+    }
+    if (secondNum.length > 0) {
+        $("#display").text(secondNum);
+    }
 }
 
 // MOST OF THIS WILL GO TO THE SERVER
