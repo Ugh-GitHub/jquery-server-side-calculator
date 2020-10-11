@@ -286,34 +286,44 @@ function updateDisplay() {
 
 // MOST OF THIS WILL GO TO THE SERVER
 function enterFunc() {
-    
-    freshCalc=false;
-    firstCalc = Number(firstNum);
-    secondCalc = Number(secondNum);
-    $("#multiplication").removeClass("selectedOperator");
-    $("#addition").removeClass("selectedOperator");
-    $("#division").removeClass("selectedOperator");
-    $("#subtraction").removeClass("selectedOperator");
 
+
+    $.ajax({
+        method: 'POST',
+        url: '/players',
+        data: {
+            firstName: firstName, 
+            lastName: lastName,
+            born: born}
+    }).then(function(response){
+        freshCalc=false;
+        getAnswer();
+        $(".operator").removeClass("selectedOperator");
+    }).catch(function(error){
+        //notifying the user of an error in post request
+        alert(error);
+    })
+    
+    
     console.log(firstCalc,secondCalc,operator,firstNum,secondNum);
 
-    if (operator == "*") {
-        answer = firstCalc*secondCalc;
-    }
-    if (operator == "/") {
-        answer = firstCalc/secondCalc;
-    }
-    if (operator == "-") {
-        answer = firstCalc-secondCalc;
-    }
-    if (operator == "+") {
-        answer = firstCalc+secondCalc;
-    }
+    
     console.log(answer);
-    firstNum = answer.toString();
-    secondNum  = operator = "";
+    
+    
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
     //AJAX send
     //then set firstNum to answer
     // set secondNum & operator to ""
+}
+
+function getAnswer() {
+    $.ajax({
+        type: 'GET',
+        url: '/tournaments'
+    }).then(function (response) {
+        firstNum = response.toString();
+        secondNum  = operator = "";
+        updateDisplay();
+    });
 }
