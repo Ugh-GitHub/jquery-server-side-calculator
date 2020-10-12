@@ -342,6 +342,6 @@ function updatePastCalcDisplay() {
         ${response.calculation.firstNum} 
         ${response.calculation.operator} 
         ${response.calculation.secondNum} = 
-        ${response.solution}`);
+        ${response.solution}</li>`);
     });
 }

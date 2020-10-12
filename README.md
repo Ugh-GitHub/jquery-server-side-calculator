@@ -6,6 +6,41 @@
 
 Your project description goes here. What problem did you solve? How did you solve it?
 
+Developed a (mostly) functional 10 key calculator doing calculations on the server side. Solved problems included number string packaging and calculation, button functionality management, and server to front end interactions.
+
+Number string packaging and calculation problems were solved by using global string variables, concatenation, and the Number() function. Button functionality management was resolved by using cascading if/if else clauses, and shared functions (such as the enterFunc() and updateDisplay(). Lastly, server to front end interactions challenges were resolved using Ajax post and get functionality.
+
+## Prerequisites
+
+- Node.js
+- Express
+- Body-Parser
+
+## Installation
+
+1.  Download the repo and files.
+2.  Navigate to the directory in terminal.
+3.  In the terminal, type 'npm init --yes' and hit enter
+4.  In the terminal, type 'npm install body-parser' and hit enter
+5.  In the terminal, type 'npm install express' and hit enter
+6. In the terminal, type 'npm start' and hit enter
+
+## Usage
+
+- Someone looking to do basic arithmetic calculations (addition, subtraction, multiplication, and division)
+
+## Built with
+
+Not sure what goes here tbh.
+
+## Acknowledgement
+
+Thanks to the folx at Prime for teaching.
+
+## Support
+
+Message me via GitHub.
+
 Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
 
 <!-- 
