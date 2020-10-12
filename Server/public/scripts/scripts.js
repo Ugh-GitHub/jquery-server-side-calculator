@@ -27,7 +27,7 @@ function onReady() {
     $("#subtraction").on('click',subFunc);
     $("#addition").on('click',addFunc);
     $("#submit").on('click',enterFunc);
-    $("#clear").on('click',enterFunc);
+    $("#clear").on('click',clear);
 }
 
 function concat1() {
@@ -267,8 +267,10 @@ function subFunc() {
 }
 
 function clear() {
+    console.log("in clear");
     freshCalc=true;
-    firstNum = secondNum  = operator = "";
+    firstNum = secondNum = operator = "";
+    updateDisplay();
 }
 
 function updateDisplay() {
