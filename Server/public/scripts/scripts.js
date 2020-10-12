@@ -290,11 +290,11 @@ function enterFunc() {
 
     $.ajax({
         method: 'POST',
-        url: '/players',
+        url: '/calculate',
         data: {
-            firstName: firstName, 
-            lastName: lastName,
-            born: born}
+            firstNum: firstNum, 
+            secondNum: secondNum,
+            operator: operator}
     }).then(function(response){
         freshCalc=false;
         getAnswer();
@@ -303,13 +303,6 @@ function enterFunc() {
         //notifying the user of an error in post request
         alert(error);
     })
-    
-    
-    console.log(firstCalc,secondCalc,operator,firstNum,secondNum);
-
-    
-    console.log(answer);
-    
     
     console.log("firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
     //AJAX send
@@ -320,7 +313,7 @@ function enterFunc() {
 function getAnswer() {
     $.ajax({
         type: 'GET',
-        url: '/tournaments'
+        url: '/calculate'
     }).then(function (response) {
         firstNum = response.toString();
         secondNum  = operator = "";
