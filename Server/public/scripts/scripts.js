@@ -299,8 +299,9 @@ function enterFunc() {
             operator: operator}
     }).then(function(response){
         freshCalc=false;
-        getAnswer();
         $(".operator").removeClass("selectedOperator");
+        getAnswer();
+        updatePastCalcDisplay()
     }).catch(function(error){
         //notifying the user of an error in post request
         alert(error);
@@ -320,5 +321,19 @@ function getAnswer() {
         firstNum = response.toString();
         secondNum  = operator = "";
         updateDisplay();
+    });
+}
+
+function updatePastCalcDisplay() {
+    $.ajax({
+        type: 'GET',
+        url: '/PastCalc'
+    }).then(function (response) {
+        console.log(response.calculation);
+        $("#pastCalcDisplay").append(`<li>
+        ${response.calculation.firstNum} 
+        ${response.calculation.operator} 
+        ${response.calculation.secondNum} = 
+        ${response.solution}`);
     });
 }

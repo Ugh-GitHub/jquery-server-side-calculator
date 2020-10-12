@@ -25,6 +25,15 @@ app.get('/calculate', (req, res) => {
     res.send(solutionArray[solutionArray.length-1]);
 });
 
+
+
+app.get('/PastCalc', (req, res) => {
+    res.send({
+        solution: solutionArray[solutionArray.length-1],
+        calculation: calcObjArray[calcObjArray.length-1]
+    });
+});
+
 function runCalc(calcObj) {
     let firstCalc = Number(calcObj.firstNum)
     let secondCalc = Number(calcObj.secondNum);
