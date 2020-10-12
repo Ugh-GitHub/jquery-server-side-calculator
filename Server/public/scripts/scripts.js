@@ -6,6 +6,7 @@ let firstNum= "";
 let secondNum= "";
 let operator="";
 let freshCalc=true;
+let operatorChain=false;
 
 console.log("98." * 5);
 
@@ -26,8 +27,14 @@ function onReady() {
     $("#division").on('click',divFunc);
     $("#subtraction").on('click',subFunc);
     $("#addition").on('click',addFunc);
-    $("#submit").on('click',enterFunc);
+    $("#submit").on('click',equalFunc);
     $("#clear").on('click',clear);
+}
+
+function equalFunc() {
+    operator = "";
+    $(".operator").removeClass("selectedOperator");
+    enterFunc();
 }
 
 function concat1() {
@@ -246,6 +253,7 @@ function addFunc() {
 }
 
 function subFunc() {
+    console.log("On entering subFunc, firstNum is",firstNum,"secondNum is",secondNum,"& operator is",operator);
     if ($("#multiplication").hasClass("selectedOperator") || $("#addition").hasClass("selectedOperator") || $("#division").hasClass("selectedOperator")) {
         $("#multiplication").removeClass("selectedOperator");
         $("#addition").removeClass("selectedOperator");
@@ -259,6 +267,7 @@ function subFunc() {
     }
     if (firstNum.length > 0 && secondNum.length > 0) {
         enterFunc();
+        console.log("made it in here");
         operator = "-";
         $("#subtraction").addClass("selectedOperator");
     }
@@ -299,7 +308,6 @@ function enterFunc() {
             operator: operator}
     }).then(function(response){
         freshCalc=false;
-        $(".operator").removeClass("selectedOperator");
         getAnswer();
         updatePastCalcDisplay()
     }).catch(function(error){
@@ -319,7 +327,8 @@ function getAnswer() {
         url: '/calculate'
     }).then(function (response) {
         firstNum = response.toString();
-        secondNum  = operator = "";
+        console.log(firstNum);
+        secondNum  = "";
         updateDisplay();
     });
 }
@@ -329,7 +338,6 @@ function updatePastCalcDisplay() {
         type: 'GET',
         url: '/PastCalc'
     }).then(function (response) {
-        console.log(response.calculation);
         $("#pastCalcDisplay").append(`<li>
         ${response.calculation.firstNum} 
         ${response.calculation.operator} 
